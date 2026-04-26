@@ -9,6 +9,9 @@ on:
 jobs:
   update_release_draft:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v6
@@ -19,7 +22,8 @@ jobs:
         id: version
         run: |
           declare -i newpost
-          datepre=$(date --utc '+%Y.%m')
+          # SemVer forbids leading zeros in numeric segments (e.g. 2026.04.0 is invalid — use 2026.4.0).
+          datepre="$(date --utc +%Y).$(date --utc +%-m)"
           tag_commit=$(git rev-list --tags --max-count=1 2>/dev/null || true)
           latest=""
           if [ -n "$tag_commit" ]; then
@@ -28,21 +32,23 @@ jobs:
           if [ -z "$latest" ]; then
             newpost=0
           else
-            latestpre=$(echo "$latest" | awk '{split($0,a,"."); print a[1] "." a[2]}')
+            latestpre=$(echo "$latest" | awk -F. '{printf "%d.%d\n", $1+0, $2+0}')
             if [[ "$latestpre" == "$datepre" ]]; then
-              latestpost=$(echo "$latest" | awk '{split($0,a,"."); print a[3]}')
+              latestpost=$(echo "$latest" | awk -F. '{print $3+0}')
               newpost=$latestpost+1
             else
               newpost=0
             fi
           fi
+          ver="${datepre}.${newpost}"
           echo "Current version:    ${latest:-<no tags yet>}"
-          echo "New target version: $datepre.$newpost"
-          echo "version=$datepre.$newpost" >> "$GITHUB_OUTPUT"
+          echo "New target version: $ver"
+          echo "version=$ver" >> "$GITHUB_OUTPUT"
 
       - uses: release-drafter/release-drafter@v7
         with:
           tag: ${{ steps.version.outputs.version }}
           name: ${{ steps.version.outputs.version }}
+          version: ${{ steps.version.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
