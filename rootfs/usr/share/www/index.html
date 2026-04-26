@@ -1,1 +1,1160 @@
-<!DOCTYPE html><html lang="en"><head><title>Home Assistant</title><meta charset="utf-8"><link rel="manifest" href="/manifest.json" crossorigin="use-credentials"><link rel="icon" href="/static/icons/favicon.ico"><link rel="modulepreload" href="/frontend_latest/entrypoint.cdeb7301bbc97dca.js" crossorigin="use-credentials"><meta name="viewport" content="width=device-width,user-scalable=no,viewport-fit=cover,initial-scale=1"><style>body{font-family:Roboto,Noto,sans-serif;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-weight:400;margin:0;padding:0;height:100%}</style><style>html{background-color:var(--primary-background-color,#fafafa);color:var(--primary-text-color,#212121)}@media (prefers-color-scheme:dark){html{background-color:var(--primary-background-color,#111);color:var(--primary-text-color,#e1e1e1)}}body{height:auto;padding:32px 0}.content{max-width:560px;margin:0 auto;padding:0 16px;box-sizing:content-box}.header{display:flex;align-items:center;justify-content:center;margin-bottom:32px}.header img{height:56px;width:56px}</style></head><body id="particles"><div class="content"><div class="header"><img src="/static/icons/favicon-192x192.png" alt="Home Assistant"></div><ha-landing-page></ha-landing-page></div><script>function _ls(d,e){var i=document.createElement("script");return e&&(i.crossOrigin="use-credentials"),i.src=d,document.head.appendChild(i)}"attachShadow"in Element.prototype||(_ls("/static/polyfills/webcomponents-bundle.js",!0),_ls("/static/polyfills/lit-polyfill-support.js",!0));var isModern=/Edge?\/(12[89]|1[3-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(12[89]|1[3-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(109|1[1-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(18\.\d+|(19|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(1{2}[3-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(16[._]([6-9]|\d{2,})|(1[7-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](12[89]|1[3-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Mobile Safari.+OPR\/([89]\d|\d{3,})\.\d+\.\d+|Android.+Firefox\/(13\d|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(12[89]|1[3-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|SamsungBrowser\/(2[7-9]|[3-9]\d|\d{3,})\.\d+|Home As{2}istant\/[\d.]+ \(.+; macOS (1[3-9]|[2-9]\d|\d{3,})\.\d+(\.\d+)?\)/.test(navigator.userAgent)&&"findLast"in Array.prototype</script><script>if(-1===navigator.userAgent.indexOf("Android")){function _pf(o,t){var n=document.createElement("link");n.rel="preload",n.as="font",n.type="font/woff2",n.href=o,n.crossOrigin="anonymous",document.head.appendChild(n)}_pf("/static/fonts/roboto/Roboto-Regular.woff2"),_pf("/static/fonts/roboto/Roboto-Medium.woff2")}</script><script crossorigin="use-credentials">isModern&&(import("/frontend_latest/entrypoint.cdeb7301bbc97dca.js"),window.latestJS=!0)</script><script>window.latestJS||_ls("/frontend_es5/entrypoint.f821c2dda6a751d8.js",!0)</script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Muthur Command</title>
+  <link rel="icon" href="/static/icons/favicon.ico">
+  <script>
+    (function () {
+      var KEY = "muthur-landing-color-theme";
+      function fromScheme(m) {
+        return m && m.matches ? "dark" : "light";
+      }
+      try {
+        var pref = localStorage.getItem(KEY);
+        if (pref !== "light" && pref !== "dark" && pref !== "system") pref = "system";
+        var scheme = window.matchMedia("(prefers-color-scheme: dark)");
+        var t = pref === "system" ? fromScheme(scheme) : pref;
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      --radius: 1.1rem;
+    }
+    html[data-theme="dark"] {
+      --background: oklch(0.27 0 107);
+      --foreground: oklch(0.92 0.01 93);
+      --card: oklch(0.31 0 107);
+      --muted: oklch(0.22 0 107);
+      --muted-foreground: oklch(0.77 0.02 99);
+      --border: oklch(0.33 0.006 107);
+      --primary: oklch(0.67 0.13 39);
+      --primary-foreground: oklch(1 0 0);
+      --ring: oklch(0.67 0.13 39);
+    }
+    html[data-theme="light"] {
+      --background: oklch(0.985 0.006 95);
+      --foreground: oklch(0.26 0.02 95);
+      --card: oklch(0.97 0.008 95);
+      --muted: oklch(0.93 0.012 95);
+      --muted-foreground: oklch(0.44 0.02 95);
+      --border: oklch(0.88 0.015 95);
+      --primary: oklch(0.56 0.14 39);
+      --primary-foreground: oklch(0.99 0 0);
+      --ring: oklch(0.56 0.14 39);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      color: var(--foreground);
+    }
+    html[data-theme="dark"] body {
+      background: radial-gradient(circle at 20% 20%, #373133 0%, var(--background) 40%, #201f23 100%);
+    }
+    html[data-theme="light"] body {
+      background: radial-gradient(circle at 18% 14%, #ffffff 0%, var(--background) 45%, #ebe6e0 100%);
+    }
+    body { position: relative; overflow-x: hidden; }
+    #particles {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.35;
+    }
+    html[data-theme="light"] #particles {
+      opacity: 0.5;
+    }
+    .page {
+      position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 5.5rem 1rem 0;
+    }
+    .topbar {
+      position: fixed; top: 1rem; left: 1rem; right: 1rem; z-index: 2; display: flex; justify-content: space-between; gap: 0.75rem;
+    }
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--card) 86%, transparent);
+      color: var(--foreground);
+      border-radius: 999px;
+      font-size: 0.86rem;
+      line-height: 1;
+      text-decoration: none;
+      padding: 0.6rem 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      backdrop-filter: blur(12px);
+      transition: 180ms ease;
+      white-space: nowrap;
+    }
+    .btn-secondary:hover {
+      border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+      color: color-mix(in oklab, var(--primary) 90%, white);
+      transform: translateY(-1px);
+    }
+    button.btn-secondary {
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .lang-select-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .lang-select {
+      margin: 0;
+      border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--card) 86%, transparent);
+      color: var(--foreground);
+      border-radius: 999px;
+      font-size: 0.86rem;
+      line-height: 1;
+      padding: 0.6rem 2.1rem 0.6rem 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      backdrop-filter: blur(12px);
+      transition: 180ms ease;
+      min-width: 7.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .lang-select:hover,
+    .lang-select:focus-visible {
+      border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+      color: color-mix(in oklab, var(--primary) 90%, white);
+      outline: none;
+    }
+    html[data-theme="light"] .lang-select:hover,
+    html[data-theme="light"] .lang-select:focus-visible {
+      color: color-mix(in oklab, var(--primary) 85%, #1a1208);
+    }
+    .lang-select-wrap::after {
+      content: "";
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      width: 0.45rem;
+      height: 0.45rem;
+      margin-top: -0.2rem;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      left: 0;
+      min-width: 100%;
+      z-index: 30;
+      padding: 0.4rem;
+      border-radius: 0.9rem;
+      border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--card) 94%, transparent);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 12px 40px color-mix(in oklab, black 42%, transparent);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    }
+    .lang-dropdown:not(.is-open) {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-6px);
+    }
+    .lang-dropdown.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .lang-option {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0.52rem 0.75rem;
+      text-align: left;
+      font: inherit;
+      font-size: 0.86rem;
+      color: var(--foreground);
+      background: transparent;
+      border: none;
+      border-radius: 0.55rem;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .lang-option:hover {
+      background: color-mix(in oklab, var(--muted) 72%, transparent);
+    }
+    .lang-option[aria-selected="true"] {
+      background: color-mix(in oklab, var(--primary) 24%, var(--muted));
+      color: color-mix(in oklab, var(--primary) 92%, white);
+    }
+    .lang-select-wrap--end .lang-dropdown {
+      left: auto;
+      right: 0;
+    }
+    .container {
+      width: min(100%, 52rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      animation: rise 500ms ease both;
+    }
+    .badge {
+      margin-top: 0.5rem;
+      background: color-mix(in oklab, var(--muted) 88%, transparent);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.85rem;
+      color: color-mix(in oklab, var(--primary) 70%, white);
+      backdrop-filter: blur(8px);
+    }
+    .hero-logo { width: 5.5rem; height: 5.5rem; margin-top: 0.4rem; }
+    h1 {
+      margin: 0.1rem 0 0;
+      line-height: 1.1;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      max-width: 15em;
+      text-wrap: balance;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted-foreground);
+      font-size: clamp(0.96rem, 2.2vw, 1.14rem);
+      max-width: 40rem;
+      text-wrap: balance;
+    }
+    .install-card {
+      margin-top: 0.7rem;
+      width: min(100%, 40rem);
+      border: 1px solid var(--border);
+      border-radius: 1.75rem;
+      background: color-mix(in oklab, var(--card) 95%, transparent);
+      padding: 0.95rem 1rem;
+      text-align: left;
+      transition: 180ms ease;
+    }
+    .progress {
+      width: 100%;
+      height: 0.42rem;
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--muted) 92%, black);
+      overflow: hidden;
+      border: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
+    }
+    .progress > .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--primary) 86%, #ffd7a8) 0%,
+        var(--primary) 55%,
+        color-mix(in oklab, var(--primary) 92%, #f3a45a) 100%
+      );
+      transition: width 320ms ease;
+      box-shadow: 0 0 10px color-mix(in oklab, var(--primary) 35%, transparent);
+    }
+    .status-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-top: 0.85rem;
+      color: color-mix(in oklab, var(--primary) 86%, #fff2dd);
+      font-weight: 600;
+    }
+    html[data-theme="light"] .status-actions {
+      color: color-mix(in oklab, var(--primary) 72%, #2a1a0a);
+    }
+    .btn-link {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      border-radius: 1.75rem;
+    }
+    .btn-link:hover {
+      background: color-mix(in oklab, var(--muted) 78%, transparent);
+    }
+    .icon-download {
+      width: 2rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.75rem;
+      border: 1px solid transparent;
+      color: color-mix(in oklab, var(--primary) 90%, #fff2dd);
+      text-decoration: none;
+    }
+    html[data-theme="light"] .icon-download {
+      color: color-mix(in oklab, var(--primary) 78%, #2a1a0a);
+    }
+    .icon-download:hover {
+      border-color: var(--border);
+      background: color-mix(in oklab, var(--muted) 76%, transparent);
+    }
+    .details-panel {
+      margin-top: 0.8rem;
+      border: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
+      border-radius: 0.5rem;
+      min-height: 0.75rem;
+      background: color-mix(in oklab, var(--muted) 94%, transparent);
+      padding: 0.6rem 0.75rem;
+      color: var(--muted-foreground);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      white-space: pre-wrap;
+    }
+    .details-panel.hidden { display: none; }
+    .failure-panel {
+      margin-top: 0.9rem;
+      border: 1px solid color-mix(in oklab, #ef4444 70%, var(--border));
+      border-radius: 0.6rem;
+      background: color-mix(in oklab, #7f1d1d 18%, var(--card));
+      color: #fecaca;
+      padding: 0.7rem 0.8rem;
+      display: none;
+    }
+    .failure-panel.show { display: block; }
+    html[data-theme="light"] .failure-panel {
+      border-color: color-mix(in oklab, #ef4444 50%, var(--border));
+      background: color-mix(in oklab, #fef2f2 92%, var(--card));
+      color: #991b1b;
+    }
+    .failure-title {
+      font-weight: 700;
+      color: #fca5a5;
+      margin-bottom: 0.3rem;
+    }
+    html[data-theme="light"] .failure-title {
+      color: #b91c1c;
+    }
+    .failure-actions {
+      margin-top: 0.65rem;
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .btn-sm {
+      height: 2rem;
+      padding: 0 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+      background: color-mix(in oklab, var(--card) 97%, transparent);
+      color: var(--foreground);
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+    .btn-sm.primary {
+      border-color: transparent;
+      background: color-mix(in oklab, var(--primary) 92%, #ffbe7f);
+      color: var(--primary-foreground);
+    }
+    .btn-sm:hover {
+      filter: brightness(1.04);
+      transform: translateY(-1px);
+    }
+    .logos {
+      width: min(100%, 52rem);
+      margin: 2rem auto 3.25rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+    .logos h2 {
+      margin: 0;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 620;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+    .logos p { margin: 0; text-align: center; color: var(--muted-foreground); }
+    .logo-grid {
+      margin-top: 0.6rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+    .logo-card {
+      height: 5.6rem;
+      border-radius: 1.75rem;
+      border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--card) 95%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 180ms ease;
+      text-decoration: none;
+    }
+    .logo-card:hover {
+      border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+      background: color-mix(in oklab, var(--card) 88%, var(--primary));
+      transform: translateY(-1px);
+    }
+    .logo-card img { width: min(8.5rem, 72%); height: auto; opacity: 0.92; }
+    .logo-card-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      width: 200px;
+      height: 64px;
+      color: var(--foreground);
+      font-size: 1.85rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    .logo-card-label svg {
+      width: 3rem;
+      height: 3rem;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.92;
+    }
+    .github-icon {
+      width: 2.9rem !important;
+      height: 2.9rem !important;
+      flex-shrink: 0;
+      stroke: none !important;
+    }
+    .github-icon path {
+      fill: currentColor !important;
+      stroke: none !important;
+    }
+    .badge-info-icon {
+      flex-shrink: 0;
+      width: 3.2rem !important;
+      height: 3.2rem !important;
+      stroke-width: 1.85;
+      display: block;
+    }
+    .logo-card-label img {
+      width: 3rem;
+      height: 3rem;
+      object-fit: contain;
+      opacity: 0.92;
+    }
+    .logo-card-img-mask {
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      flex-shrink: 0;
+      vertical-align: middle;
+      background-color: currentColor;
+      -webkit-mask-image: var(--logo-mask);
+      mask-image: var(--logo-mask);
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      opacity: 0.92;
+    }
+    .logo-card-icon-only {
+      width: 136px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-card-icon-only svg {
+      width: 3rem;
+      height: 3rem;
+      display: block;
+    }
+    footer {
+      margin-top: auto;
+      width: 100%;
+      border-top: 1px solid var(--border);
+      padding: 1.1rem 1rem 1.25rem;
+      color: var(--muted-foreground);
+      font-size: 0.92rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--background) 90%, transparent);
+    }
+    footer a { color: var(--foreground); text-underline-offset: 3px; }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 1.1rem;
+      transform: translateX(-50%) translateY(1rem);
+      border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--card) 96%, black 4%);
+      border-radius: 999px;
+      padding: 0.56rem 1rem;
+      font-size: 0.86rem;
+      color: var(--foreground);
+      opacity: 0;
+      transition: 200ms ease;
+      z-index: 5;
+      pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      .page { padding-top: 7rem; }
+      .logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <header class="topbar">
+    <div class="lang-select-wrap" id="langMenuRoot">
+      <button type="button" class="lang-select" id="langSelectBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="langSelectList">
+        <span id="langSelectCurrent">简体中文</span>
+      </button>
+      <div class="lang-dropdown" id="langSelectList" role="listbox" aria-labelledby="langSelectBtn">
+        <button type="button" class="lang-option" role="option" data-locale="zh" aria-selected="true">简体中文</button>
+        <button type="button" class="lang-option" role="option" data-locale="en" aria-selected="false">English</button>
+        <button type="button" class="lang-option" role="option" data-locale="it" aria-selected="false">Italiano</button>
+        <button type="button" class="lang-option" role="option" data-locale="ru" aria-selected="false">Русский</button>
+      </div>
+    </div>
+    <div class="lang-select-wrap lang-select-wrap--end" id="themeMenuRoot">
+      <button type="button" class="lang-select" id="themeSelectBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="themeSelectList">
+        <span id="themeSelectCurrent">System</span>
+      </button>
+      <div class="lang-dropdown" id="themeSelectList" role="listbox" aria-labelledby="themeSelectBtn">
+        <button type="button" class="lang-option" role="option" data-theme-pref="light" aria-selected="false">Light</button>
+        <button type="button" class="lang-option" role="option" data-theme-pref="dark" aria-selected="false">Dark</button>
+        <button type="button" class="lang-option" role="option" data-theme-pref="system" aria-selected="true">System</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="container">
+      <p class="badge" id="heroBadge">Coming soon!</p>
+      <img class="hero-logo" src="/static/images/waitlist-logo.svg" alt="Muthur Command Logo" id="heroLogoAlt">
+      <h1 id="heroTitle">Preparing Muthur Command OS</h1>
+      <p class="subtitle" id="heroSubtitle">This may take 20 minutes or more</p>
+
+      <div class="install-card" id="installStatus">
+        <div class="progress"><div class="bar" id="installBar"></div></div>
+        <div class="status-actions">
+          <button class="btn-link" id="toggleDetails" type="button">Hide details</button>
+          <a class="icon-download" href="#" id="downloadLogs" aria-label="Download logs">⬇</a>
+        </div>
+        <div class="details-panel" id="detailsPanel"></div>
+        <div class="failure-panel" id="failurePanel">
+          <div class="failure-title" id="failureHeading">Installation failed</div>
+          <div id="failureMessage">Unable to install Muthur Command Core. Please check network and retry.</div>
+          <div class="failure-actions">
+            <button class="btn-sm primary" id="retryInstall" type="button">Retry installation</button>
+            <button class="btn-sm" id="showFailureDetails" type="button">Show failure details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="logos">
+      <h2 id="socialTitle">Social media</h2>
+      <p id="socialDesc">You can find our latest updates on the social media platforms listed below</p>
+      <div class="logo-grid">
+        <a class="logo-card" href="https://nextjs.org" target="_blank" rel="noopener noreferrer">
+          <span class="logo-card-label">
+            <svg class="badge-info-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 9.9 4.5 7.3 4.3 6.5 6.9 4.3 8.5 5 11 4.3 13.5 6.5 15.1 7.3 17.7 9.9 17.5 12 19 14.1 17.5 16.7 17.7 17.5 15.1 19.7 13.5 19 11 19.7 8.5 17.5 6.9 16.7 4.3 14.1 4.5Z" transform="translate(0 1)"></path>
+              <path d="M12 8.75h.01"></path>
+              <path d="M11.25 11.25h1.5v4h-1.5z"></path>
+            </svg>
+            <span id="labelAbout">About</span>
+          </span>
+        </a>
+        <a class="logo-card" href="https://notion.so" target="_blank" rel="noopener noreferrer">
+          <span class="logo-card-label">
+            <span class="logo-card-img-mask" id="imgGithubAlt" role="img" aria-label="Github" style="--logo-mask:url(/static/images/github.svg)"></span>
+            <span id="labelGithub">Github</span>
+          </span>
+        </a>
+        <a class="logo-card" href="https://resend.com" target="_blank" rel="noopener noreferrer">
+          <span class="logo-card-label">
+            <span class="logo-card-img-mask" id="imgWechatAlt" role="img" aria-label="Wechat" style="--logo-mask:url(/static/images/wechat.svg)"></span>
+            <span id="labelWechat">Wechat</span>
+          </span>
+        </a>
+        <a class="logo-card" href="https://www.android.com" target="_blank" rel="noopener noreferrer">
+          <span class="logo-card-label">
+            <span class="logo-card-img-mask" id="imgAndroidAlt" role="img" aria-label="Android" style="--logo-mask:url(/static/images/android.svg)"></span>
+            <span id="labelAndroid">Android</span>
+          </span>
+        </a>
+        <a class="logo-card" href="https://simpleicons.org" target="_blank" rel="noopener noreferrer" id="linkIos" aria-label="iOS">
+          <span class="logo-card-label">
+            <span class="logo-card-img-mask" id="imgIosAlt" role="img" aria-label="iOS" style="--logo-mask:url(/static/images/ios.svg)"></span>
+          </span>
+        </a>
+        <a class="logo-card" href="https://discord.com" target="_blank" rel="noopener noreferrer" id="linkDiscord" aria-label="Discord">
+          <span class="logo-card-label">
+            <span class="logo-card-img-mask" id="imgDiscordAlt" role="img" aria-label="Discord" style="--logo-mask:url(/static/images/discord.svg)"></span>
+            <span id="labelDiscord">Discord</span>
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footerRoot"></footer>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = "muthur-landing-locale";
+      var STR = {
+        en: {
+          docTitle: "Muthur Command",
+          langName: "English",
+          langToggleAria: "Switch language",
+          badge: "Coming soon!",
+          heroTitle: "Preparing Muthur Command OS",
+          heroSubtitle: "This may take 20 minutes or more",
+          installShowDetails: "Show details",
+          installHideDetails: "Hide details",
+          installFailureTitle: "Installation failed",
+          installFailureMessage: "Unable to install Muthur Command Core. Please check network and retry.",
+          retryInstall: "Retry installation",
+          showFailureDetails: "Show failure details",
+          downloadLogsAria: "Download logs",
+          socialTitle: "Social media",
+          socialDesc: "You can find our latest updates on the social media platforms listed below",
+          footerBefore: "Brought to you by ",
+          footerAfter: ".",
+          themeSelectAria: "Color theme",
+          themeLight: "Light",
+          themeDark: "Dark",
+          themeSystem: "System",
+          labelAbout: "About",
+          labelGithub: "Github",
+          labelWechat: "Wechat",
+          labelAndroid: "Android",
+          labelDiscord: "Discord",
+          heroLogoAlt: "Muthur Command Logo",
+          altGithub: "Github",
+          altWechat: "Wechat",
+          altAndroid: "Android",
+          altIos: "iOS",
+          altDiscord: "Discord",
+          logRetry1: "[action] Retry requested by user...",
+          logRetry2: "[core] Restarting installation pipeline...",
+          installLogs: [
+            "[init] Bootstrapping installer...",
+            "[network] Checking internet connectivity...",
+            "[core] Downloading Muthur Command OS artifacts...",
+            "[core] Verifying package signatures...",
+            "[core] Installing core services...",
+          ],
+          failureLogs: [
+            "[error] Core install failed: timeout while pulling core image",
+            "[hint] Verify DNS/network availability and retry installation",
+          ],
+        },
+        zh: {
+          docTitle: "Muthur Command",
+          langName: "简体中文",
+          langToggleAria: "切换语言",
+          badge: "即将推出",
+          heroTitle: "正在准备 Muthur Command OS",
+          heroSubtitle: "可能需要 20 分钟或更久",
+          installShowDetails: "显示详情",
+          installHideDetails: "隐藏详情",
+          installFailureTitle: "安装失败",
+          installFailureMessage: "无法安装 Muthur Command 核心。请检查网络后重试。",
+          retryInstall: "重试安装",
+          showFailureDetails: "显示失败详情",
+          downloadLogsAria: "下载日志",
+          socialTitle: "社交媒体",
+          socialDesc: "您可以在下列平台获取我们的最新动态",
+          footerBefore: "本页面由 ",
+          footerAfter: " 提供。",
+          themeSelectAria: "颜色主题",
+          themeLight: "浅色",
+          themeDark: "深色",
+          themeSystem: "跟随系统",
+          labelAbout: "关于",
+          labelGithub: "Github",
+          labelWechat: "微信",
+          labelAndroid: "Android",
+          labelDiscord: "Discord",
+          heroLogoAlt: "Muthur Command 标志",
+          altGithub: "Github",
+          altWechat: "微信",
+          altAndroid: "Android",
+          altIos: "iOS",
+          altDiscord: "Discord",
+          logRetry1: "[action] 用户已请求重试…",
+          logRetry2: "[core] 正在重启安装流程…",
+          installLogs: [
+            "[init] 正在启动安装程序…",
+            "[network] 正在检测网络连接…",
+            "[core] 正在下载 Muthur Command OS 组件…",
+            "[core] 正在校验软件包签名…",
+            "[core] 正在安装核心服务…",
+          ],
+          failureLogs: [
+            "[error] 核心安装失败：拉取核心镜像超时",
+            "[hint] 请确认 DNS/网络可用后重试安装",
+          ],
+        },
+        it: {
+          docTitle: "Muthur Command",
+          langName: "Italiano",
+          langToggleAria: "Cambia lingua",
+          badge: "In arrivo!",
+          heroTitle: "Preparazione di Muthur Command OS",
+          heroSubtitle: "Potrebbe richiedere 20 minuti o più",
+          installShowDetails: "Mostra dettagli",
+          installHideDetails: "Nascondi dettagli",
+          installFailureTitle: "Installazione non riuscita",
+          installFailureMessage: "Impossibile installare il core di Muthur Command. Verifica la rete e riprova.",
+          retryInstall: "Riprova installazione",
+          showFailureDetails: "Mostra dettagli errore",
+          downloadLogsAria: "Scarica registro",
+          socialTitle: "Social media",
+          socialDesc: "Gli aggiornamenti più recenti sono sulle piattaforme elencate di seguito",
+          footerBefore: "Offerto da ",
+          footerAfter: ".",
+          themeSelectAria: "Tema colore",
+          themeLight: "Chiaro",
+          themeDark: "Scuro",
+          themeSystem: "Sistema",
+          labelAbout: "Informazioni",
+          labelGithub: "Github",
+          labelWechat: "WeChat",
+          labelAndroid: "Android",
+          labelDiscord: "Discord",
+          heroLogoAlt: "Logo Muthur Command",
+          altGithub: "Github",
+          altWechat: "WeChat",
+          altAndroid: "Android",
+          altIos: "iOS",
+          altDiscord: "Discord",
+          logRetry1: "[action] L'utente ha richiesto un nuovo tentativo…",
+          logRetry2: "[core] Riavvio della pipeline di installazione…",
+          installLogs: [
+            "[init] Avvio programma di installazione…",
+            "[network] Verifica della connettività…",
+            "[core] Download degli artefatti Muthur Command OS…",
+            "[core] Verifica delle firme dei pacchetti…",
+            "[core] Installazione dei servizi core…",
+          ],
+          failureLogs: [
+            "[error] Installazione core non riuscita: timeout durante il pull dell'immagine",
+            "[hint] Verificare DNS/rete e ripetere l'installazione",
+          ],
+        },
+        ru: {
+          docTitle: "Muthur Command",
+          langName: "Русский",
+          langToggleAria: "Сменить язык",
+          badge: "Скоро!",
+          heroTitle: "Подготовка Muthur Command OS",
+          heroSubtitle: "Это может занять 20 минут или дольше",
+          installShowDetails: "Показать подробности",
+          installHideDetails: "Скрыть подробности",
+          installFailureTitle: "Ошибка установки",
+          installFailureMessage: "Не удалось установить ядро Muthur Command. Проверьте сеть и повторите попытку.",
+          retryInstall: "Повторить установку",
+          showFailureDetails: "Показать сведения об ошибке",
+          downloadLogsAria: "Скачать журнал",
+          socialTitle: "Соцсети",
+          socialDesc: "Актуальные новости — в соцсетях по ссылкам ниже",
+          footerBefore: "Страница от ",
+          footerAfter: ".",
+          themeSelectAria: "Тема оформления",
+          themeLight: "Светлая",
+          themeDark: "Тёмная",
+          themeSystem: "Как в системе",
+          labelAbout: "О проекте",
+          labelGithub: "Github",
+          labelWechat: "WeChat",
+          labelAndroid: "Android",
+          labelDiscord: "Discord",
+          heroLogoAlt: "Логотип Muthur Command",
+          altGithub: "Github",
+          altWechat: "WeChat",
+          altAndroid: "Android",
+          altIos: "iOS",
+          altDiscord: "Discord",
+          logRetry1: "[action] Пользователь запросил повтор…",
+          logRetry2: "[core] Перезапуск конвейера установки…",
+          installLogs: [
+            "[init] Запуск установщика…",
+            "[network] Проверка подключения к сети…",
+            "[core] Загрузка артефактов Muthur Command OS…",
+            "[core] Проверка подписей пакетов…",
+            "[core] Установка основных служб…",
+          ],
+          failureLogs: [
+            "[error] Сбой установки ядра: таймаут при загрузке образа",
+            "[hint] Проверьте DNS и сеть, затем повторите установку",
+          ],
+        },
+      };
+
+      var LOCALE_ORDER = ["zh", "en", "it", "ru"];
+
+      function detectLocale() {
+        try {
+          var s = localStorage.getItem(STORAGE_KEY);
+          if (LOCALE_ORDER.indexOf(s) >= 0) return s;
+        } catch (e) {}
+        var n = (navigator.language || "").toLowerCase();
+        if (n.indexOf("zh") === 0) return "zh";
+        if (n.indexOf("it") === 0) return "it";
+        if (n.indexOf("ru") === 0) return "ru";
+        return "en";
+      }
+
+      var locale = detectLocale();
+      var bar = document.getElementById("installBar");
+      var detailsPanel = document.getElementById("detailsPanel");
+      var toggleDetails = document.getElementById("toggleDetails");
+      var failurePanel = document.getElementById("failurePanel");
+      var retryInstall = document.getElementById("retryInstall");
+      var showFailureDetails = document.getElementById("showFailureDetails");
+      var downloadLogs = document.getElementById("downloadLogs");
+      var footerRoot = document.getElementById("footerRoot");
+      var langMenuRoot = document.getElementById("langMenuRoot");
+      var langSelectBtn = document.getElementById("langSelectBtn");
+      var langSelectList = document.getElementById("langSelectList");
+      var langSelectCurrent = document.getElementById("langSelectCurrent");
+      var langMenuOpen = false;
+
+      var THEME_KEY = "muthur-landing-color-theme";
+      var themeMenuRoot = document.getElementById("themeMenuRoot");
+      var themeSelectBtn = document.getElementById("themeSelectBtn");
+      var themeSelectList = document.getElementById("themeSelectList");
+      var themeSelectCurrent = document.getElementById("themeSelectCurrent");
+      var themeMenuOpen = false;
+
+      function detectThemePref() {
+        try {
+          var t = localStorage.getItem(THEME_KEY);
+          if (t === "light" || t === "dark" || t === "system") return t;
+        } catch (e) {}
+        return "system";
+      }
+
+      var themePref = detectThemePref();
+
+      function resolveColorTheme() {
+        if (themePref === "light") return "light";
+        if (themePref === "dark") return "dark";
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+
+      function applyResolvedTheme() {
+        document.documentElement.setAttribute("data-theme", resolveColorTheme());
+      }
+
+      function closeThemeMenu() {
+        themeMenuOpen = false;
+        themeSelectList.classList.remove("is-open");
+        themeSelectBtn.setAttribute("aria-expanded", "false");
+      }
+      function openThemeMenu() {
+        closeLangMenu();
+        themeMenuOpen = true;
+        themeSelectList.classList.add("is-open");
+        themeSelectBtn.setAttribute("aria-expanded", "true");
+      }
+      function toggleThemeMenu() {
+        if (themeMenuOpen) closeThemeMenu();
+        else openThemeMenu();
+      }
+
+      function syncThemeSelect() {
+        if (!themeSelectBtn || !themeSelectList || !themeSelectCurrent) return;
+        var s = cur();
+        themeSelectBtn.setAttribute("aria-label", s.themeSelectAria);
+        themeSelectBtn.setAttribute("aria-expanded", themeMenuOpen ? "true" : "false");
+        themeSelectCurrent.textContent =
+          themePref === "light" ? s.themeLight : themePref === "dark" ? s.themeDark : s.themeSystem;
+        var tOpts = themeSelectList.querySelectorAll("[data-theme-pref]");
+        for (var ti = 0; ti < tOpts.length; ti++) {
+          var el = tOpts[ti];
+          var pref = el.getAttribute("data-theme-pref");
+          if (pref === "light") el.textContent = s.themeLight;
+          else if (pref === "dark") el.textContent = s.themeDark;
+          else el.textContent = s.themeSystem;
+          el.setAttribute("aria-selected", pref === themePref ? "true" : "false");
+        }
+      }
+
+      applyResolvedTheme();
+
+      var colorSchemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+      function onColorSchemeChange() {
+        if (themePref === "system") applyResolvedTheme();
+      }
+      if (colorSchemeMq.addEventListener) {
+        colorSchemeMq.addEventListener("change", onColorSchemeChange);
+      } else if (colorSchemeMq.addListener) {
+        colorSchemeMq.addListener(onColorSchemeChange);
+      }
+
+      var progress = 42;
+      var detailsVisible = false;
+      var failed = window.location.search.indexOf("fail=1") !== -1;
+      var retryExtraCount = 0;
+
+      function cur() {
+        return STR[locale];
+      }
+
+      function getInstallLines() {
+        var lines = cur().installLogs.slice();
+        if (retryExtraCount >= 1) lines.push(cur().logRetry1);
+        if (retryExtraCount >= 2) lines.push(cur().logRetry2);
+        return lines;
+      }
+
+      function renderLogs() {
+        var core = getInstallLines();
+        var lines = failed ? core.concat(cur().failureLogs) : core;
+        detailsPanel.textContent = lines.join("\n");
+      }
+
+      function renderState() {
+        bar.style.width = progress + "%";
+        failurePanel.classList.toggle("show", failed);
+        toggleDetails.textContent = detailsVisible ? cur().installHideDetails : cur().installShowDetails;
+        detailsPanel.classList.toggle("hidden", !detailsVisible);
+      }
+
+      function applyStaticUI() {
+        var s = cur();
+        var htmlLang = { zh: "zh-CN", en: "en", it: "it", ru: "ru" }[locale] || "en";
+        document.documentElement.lang = htmlLang;
+        document.title = s.docTitle;
+        langSelectCurrent.textContent = s.langName;
+        langSelectBtn.setAttribute("aria-label", s.langToggleAria);
+        langSelectBtn.setAttribute("aria-expanded", langMenuOpen ? "true" : "false");
+        var langOpts = langSelectList.querySelectorAll("[data-locale]");
+        for (var lo = 0; lo < langOpts.length; lo++) {
+          var o = langOpts[lo];
+          o.setAttribute("aria-selected", o.getAttribute("data-locale") === locale ? "true" : "false");
+        }
+        document.getElementById("heroBadge").textContent = s.badge;
+        document.getElementById("heroTitle").textContent = s.heroTitle;
+        document.getElementById("heroSubtitle").textContent = s.heroSubtitle;
+        document.getElementById("failureHeading").textContent = s.installFailureTitle;
+        document.getElementById("failureMessage").textContent = s.installFailureMessage;
+        retryInstall.textContent = s.retryInstall;
+        showFailureDetails.textContent = s.showFailureDetails;
+        document.getElementById("socialTitle").textContent = s.socialTitle;
+        document.getElementById("socialDesc").textContent = s.socialDesc;
+        document.getElementById("labelAbout").textContent = s.labelAbout;
+        document.getElementById("labelGithub").textContent = s.labelGithub;
+        document.getElementById("labelWechat").textContent = s.labelWechat;
+        document.getElementById("labelAndroid").textContent = s.labelAndroid;
+        document.getElementById("labelDiscord").textContent = s.labelDiscord;
+        document.getElementById("heroLogoAlt").setAttribute("alt", s.heroLogoAlt);
+        document.getElementById("imgGithubAlt").setAttribute("aria-label", s.altGithub);
+        document.getElementById("imgWechatAlt").setAttribute("aria-label", s.altWechat);
+        document.getElementById("imgAndroidAlt").setAttribute("aria-label", s.altAndroid);
+        document.getElementById("imgIosAlt").setAttribute("aria-label", s.altIos);
+        document.getElementById("imgDiscordAlt").setAttribute("aria-label", s.altDiscord);
+        document.getElementById("linkIos").setAttribute("aria-label", s.altIos);
+        document.getElementById("linkDiscord").setAttribute("aria-label", s.altDiscord);
+        downloadLogs.setAttribute("aria-label", s.downloadLogsAria);
+        syncThemeSelect();
+        while (footerRoot.firstChild) footerRoot.removeChild(footerRoot.firstChild);
+        footerRoot.appendChild(document.createTextNode(s.footerBefore));
+        var link = document.createElement("a");
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.href = "https://www.muthur-command.com";
+        link.textContent = "Muthur Command";
+        footerRoot.appendChild(link);
+        footerRoot.appendChild(document.createTextNode(s.footerAfter));
+      }
+
+      applyStaticUI();
+      bar.style.width = progress + "%";
+      renderLogs();
+      renderState();
+
+      function closeLangMenu() {
+        langMenuOpen = false;
+        langSelectList.classList.remove("is-open");
+        langSelectBtn.setAttribute("aria-expanded", "false");
+      }
+      function openLangMenu() {
+        closeThemeMenu();
+        langMenuOpen = true;
+        langSelectList.classList.add("is-open");
+        langSelectBtn.setAttribute("aria-expanded", "true");
+      }
+      function toggleLangMenu() {
+        if (langMenuOpen) closeLangMenu();
+        else openLangMenu();
+      }
+
+      langSelectBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        closeThemeMenu();
+        toggleLangMenu();
+      });
+
+      themeSelectBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        closeLangMenu();
+        toggleThemeMenu();
+      });
+
+      var themeOptsClick = themeSelectList.querySelectorAll("[data-theme-pref]");
+      for (var tc = 0; tc < themeOptsClick.length; tc++) {
+        themeOptsClick[tc].addEventListener("click", function (e) {
+          e.stopPropagation();
+          var v = e.currentTarget.getAttribute("data-theme-pref");
+          if (v !== "light" && v !== "dark" && v !== "system") return;
+          themePref = v;
+          try {
+            localStorage.setItem(THEME_KEY, themePref);
+          } catch (e3) {}
+          applyResolvedTheme();
+          closeThemeMenu();
+          syncThemeSelect();
+        });
+      }
+
+      var langOptsClick = langSelectList.querySelectorAll("[data-locale]");
+      for (var lc = 0; lc < langOptsClick.length; lc++) {
+        langOptsClick[lc].addEventListener("click", function (e) {
+          e.stopPropagation();
+          var v = e.currentTarget.getAttribute("data-locale");
+          if (LOCALE_ORDER.indexOf(v) < 0) return;
+          locale = v;
+          try {
+            localStorage.setItem(STORAGE_KEY, locale);
+          } catch (e2) {}
+          closeLangMenu();
+          applyStaticUI();
+          renderLogs();
+          renderState();
+        });
+      }
+
+      document.addEventListener("click", function (e) {
+        if (langMenuRoot.contains(e.target)) return;
+        if (themeMenuRoot.contains(e.target)) return;
+        closeLangMenu();
+        closeThemeMenu();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key !== "Escape") return;
+        closeLangMenu();
+        closeThemeMenu();
+      });
+
+      toggleDetails.addEventListener("click", function () {
+        detailsVisible = !detailsVisible;
+        renderState();
+      });
+
+      showFailureDetails.addEventListener("click", function () {
+        detailsVisible = true;
+        renderState();
+      });
+
+      retryInstall.addEventListener("click", function () {
+        failed = false;
+        progress = 56;
+        retryExtraCount = 2;
+        renderLogs();
+        renderState();
+      });
+
+      downloadLogs.addEventListener("click", function (event) {
+        event.preventDefault();
+        var blob = new Blob([detailsPanel.textContent + "\n"], { type: "text/plain;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "muthur-command-install.log";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 1000);
+      });
+    })();
+
+    (function () {
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      const particles = [];
+      const maxCount = window.matchMedia("(min-width: 768px)").matches ? 170 : 70;
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      function spawn() {
+        particles.length = 0;
+        for (let i = 0; i < maxCount; i += 1) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: (Math.random() - 0.5) * 0.25,
+            r: Math.random() * 1.9 + 0.35,
+          });
+        }
+      }
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var fillStyle =
+          document.documentElement.getAttribute("data-theme") === "light"
+            ? "rgba(165, 78, 22, 0.82)"
+            : "rgba(247,255,155,0.68)";
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -10) p.x = canvas.width + 10;
+          if (p.x > canvas.width + 10) p.x = -10;
+          if (p.y < -10) p.y = canvas.height + 10;
+          if (p.y > canvas.height + 10) p.y = -10;
+          ctx.beginPath();
+          ctx.fillStyle = fillStyle;
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      resize();
+      spawn();
+      draw();
+      window.addEventListener("resize", function () {
+        resize();
+        spawn();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -63,7 +63,7 @@ func main() {
 	// Start mDNS broadcast
 	go func() {
 		log.Print("Start mDNS broadcast")
-		publishHomeAssistant()
+		publishMuthurCommand()
 		defer mdns.Shutdown()
 	}()
 

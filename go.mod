@@ -1,4 +1,4 @@
-module github.com/home-assistant/landingpage
+module github.com/muthur-command/landingpage
 
 go 1.24
 

@@ -19,7 +19,7 @@ type Response struct {
 	Data    map[string]any `json:"data,omitempty"`
 }
 
-func publishHomeAssistant() {
+func publishMuthurCommand() {
 	var err error
 
 	var outboundIP net.IP
@@ -36,7 +36,7 @@ func publishHomeAssistant() {
 	unique := xid.New()
 	hostURL := "http://" + outboundIP.String() + ":8123"
 	params := []string{
-		"location_name=Home Assistant",
+		"location_name=Muthur Command",
 		"uuid=",
 		"version=0.0.0",
 		"external_url=",
@@ -46,8 +46,8 @@ func publishHomeAssistant() {
 		"requires_api_password=True",
 	}
 
-	log.Printf("Publish %s to _home-assistant._tcp", hostURL)
-	mdns, err = zeroconf.Register("homeassistant-"+unique.String(), "_home-assistant._tcp", "local.", 8123, params, nil)
+	log.Printf("Publish %s to _muthur-command._tcp", hostURL)
+	mdns, err = zeroconf.Register("muthurcommand-"+unique.String(), "_muthur-command._tcp", "local.", 8123, params, nil)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -1,4 +1,4 @@
-name: Update frontend
+name: Update landing frontend
 
 on:
   schedule: # once a day
@@ -15,21 +15,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-      - name: Get latest frontend release
+      - name: Get latest mc_fd release
         id: latest_frontend_version
         uses: abatilo/release-info-action@v1.3.3
         with:
-          owner: home-assistant
-          repo: frontend
+          owner: muthur-command
+          repo: mc_fd
       - name: Check if version is up to date
         id: check_version
         run: |
-          current_version="$(cat .ha-frontend-version)"
+          current_version="$(cat .mc-frontend-version)"
           latest_version="${{ steps.latest_frontend_version.outputs.latest_tag }}"
           echo "current_version=${current_version}" >> $GITHUB_OUTPUT
           echo "LATEST_VERSION=${latest_version}" >> $GITHUB_ENV
           if [[ ! "$current_version" < "$latest_version" ]]; then
-            echo "Frontend version is up to date"
+            echo "Landing frontend version is up to date"
             echo "skip=true" >> $GITHUB_OUTPUT
           fi
       - name: Check if there is no open PR with this version
@@ -38,7 +38,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          PR=$(gh pr list --state open --base main --json title --search "Update frontend to version $LATEST_VERSION")
+          PR=$(gh pr list --state open --base mc --json title --search "Update landing frontend to version $LATEST_VERSION")
           if [[ "$PR" != "[]" ]]; then
             echo "Skipping - There is already a PR open for version $LATEST_VERSION"
             echo "skip=true" >> $GITHUB_OUTPUT
@@ -55,28 +55,28 @@ jobs:
           rm -rf rootfs/usr/share/www/*
       - name: Update version file
         run: |
-          echo "${{ needs.check-version.outputs.latest_version }}" > .ha-frontend-version
+          echo "${{ needs.check-version.outputs.latest_version }}" > .muthur-command-frontend-version
       - name: Download release assets
         uses: robinraju/release-downloader@v1
         with:
-          repository: 'home-assistant/frontend'
+          repository: 'muthur-command/mc_fd'
           tag: ${{ needs.check-version.outputs.latest_version }}
-          fileName: home_assistant_frontend_landingpage-${{ needs.check-version.outputs.latest_version }}.tar.gz
+          fileName: muthur_command_frontend_landingpage-${{ needs.check-version.outputs.latest_version }}.tar.gz
           extract: true
           out-file-path: rootfs/usr/share/www/
       - name: Remove release assets archive
         run: |
-          rm -f rootfs/usr/share/www/home_assistant_frontend_landingpage-*.tar.gz
+          rm -f rootfs/usr/share/www/muthur_command_frontend_landingpage-*.tar.gz
       - name: Create PR
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: "Update frontend to version ${{ needs.check-version.outputs.latest_version }}"
+          commit-message: "Update landing frontend to version ${{ needs.check-version.outputs.latest_version }}"
           branch: autoupdate-frontend
-          base: main
+          base: mc
           draft: true
           sign-commits: true
-          title: "Update frontend to version ${{ needs.check-version.outputs.latest_version }}"
+          title: "Update landing frontend to version ${{ needs.check-version.outputs.latest_version }}"
           body: >
-            Update frontend from ${{ needs.check-version.outputs.current_version }} to
-            [${{ needs.check-version.outputs.latest_version }}](https://github.com/home-assistant/frontend/releases/tag/${{ needs.check-version.outputs.latest_version }})
+            Update landing frontend from ${{ needs.check-version.outputs.current_version }} to
+            [${{ needs.check-version.outputs.latest_version }}](https://github.com/muthur-command/mc_fd/releases/tag/${{ needs.check-version.outputs.latest_version }})
 
