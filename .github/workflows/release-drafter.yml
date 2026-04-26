@@ -19,18 +19,26 @@ jobs:
         id: version
         run: |
           declare -i newpost
-          latest=$(git describe --tags $(git rev-list --tags --max-count=1))
-          latestpre=$(echo "$latest" | awk '{split($0,a,"."); print a[1] "." a[2]}')
           datepre=$(date --utc '+%Y.%m')
-          if [[ "$latestpre" == "$datepre" ]]; then
+          tag_commit=$(git rev-list --tags --max-count=1 2>/dev/null || true)
+          latest=""
+          if [ -n "$tag_commit" ]; then
+            latest=$(git describe --tags --abbrev=0 "$tag_commit" 2>/dev/null || true)
+          fi
+          if [ -z "$latest" ]; then
+            newpost=0
+          else
+            latestpre=$(echo "$latest" | awk '{split($0,a,"."); print a[1] "." a[2]}')
+            if [[ "$latestpre" == "$datepre" ]]; then
               latestpost=$(echo "$latest" | awk '{split($0,a,"."); print a[3]}')
               newpost=$latestpost+1
-          else
+            else
               newpost=0
+            fi
           fi
-          echo Current version:    $latest
-          echo New target version: $datepre.$newpost
-          echo "::set-output name=version::$datepre.$newpost"
+          echo "Current version:    ${latest:-<no tags yet>}"
+          echo "New target version: $datepre.$newpost"
+          echo "version=$datepre.$newpost" >> "$GITHUB_OUTPUT"
 
       - uses: release-drafter/release-drafter@v7
         with:
