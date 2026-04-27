@@ -1,0 +1,1 @@
+import{_ as o}from"./coming-soon-content.vue_vue_type_script_setup_true_lang-BrmRN-Dv.js";import{d as t,o as e,c as a}from"./index-B8y1bvW4.js";import"./sparkles-CFGhVgE3.js";const m=t({__name:"notifications",setup(n){return(r,c)=>(e(),a(o))}});export{m as default};

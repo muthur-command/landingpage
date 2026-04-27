@@ -1,0 +1,1 @@
+import{d as a,o as r,l as o,C as n,q as l,h as c,O as i}from"./index-B8y1bvW4.js";const m=a({__name:"AlertDescription",props:{class:{}},setup(s){const e=s;return(t,p)=>(r(),o("div",{"data-slot":"alert-description",class:l(c(i)("text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",e.class))},[n(t.$slots,"default")],2))}});export{m as _};

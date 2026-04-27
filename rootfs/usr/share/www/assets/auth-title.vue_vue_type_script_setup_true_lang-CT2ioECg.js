@@ -1,0 +1,1 @@
+import{d as a,u as n,o,l as r,f as t,k as l,h as p}from"./index-B8y1bvW4.js";const c={class:"flex items-center gap-2 text-xl font-bold"},m=a({__name:"auth-title",setup(i){const{t:s}=n();return(u,e)=>(o(),r("h1",c,[e[0]||(e[0]=t("span",{class:"text-2xl","aria-hidden":"true"},"🐣",-1)),t("span",null,l(p(s)("auth.appName")),1)]))}});export{m as _};

@@ -1,0 +1,1 @@
+import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as t,o,c as a,h as n}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const i=t({__name:"project-management",setup(r){return(c,m)=>(o(),a(n(e),{title:"Project Management",description:"项目管理"}))}});export{i as default};

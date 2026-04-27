@@ -1,0 +1,1 @@
+import{_ as n,I as s,o as t,l as c,g as o}from"./index-B8y1bvW4.js";const r={},a={class:"grid min-h-screen place-items-center"};function i(_,p){const e=s("a-spin");return t(),c("div",a,[o(e,{size:"large",tip:"OAuthing..."})])}const d=n(r,[["render",i]]);export{d as default};

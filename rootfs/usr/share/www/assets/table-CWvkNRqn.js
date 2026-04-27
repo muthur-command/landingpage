@@ -1,0 +1,1 @@
+import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as t,o,c as r,h as a}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=t({__name:"table",setup(n){return(c,s)=>(o(),r(a(e),{title:"Table Pricing",description:"表格式定价"}))}});export{m as default};
