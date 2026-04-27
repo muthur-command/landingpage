@@ -1,0 +1,1 @@
+import{_ as o}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as t,o as e,c as p,h as r}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=t({__name:"todo-list-app",setup(s){return(a,n)=>(e(),p(r(o),{title:"Todo List App",description:"待办列表"}))}});export{m as default};

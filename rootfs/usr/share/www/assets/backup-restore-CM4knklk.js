@@ -1,0 +1,1 @@
+import{_ as e}from"./coming-soon-content.vue_vue_type_script_setup_true_lang-BrmRN-Dv.js";import{d as o,o as r,c as t}from"./index-B8y1bvW4.js";import"./sparkles-CFGhVgE3.js";const m=o({__name:"backup-restore",setup(a){return(c,s)=>(r(),t(e))}});export{m as default};

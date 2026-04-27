@@ -1,0 +1,1 @@
+import{_ as o}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as e,o as n,c as r,h as t}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const p=e({__name:"column",setup(c){return(a,s)=>(n(),r(t(o),{title:"Column Pricing",description:"列式定价"}))}});export{p as default};

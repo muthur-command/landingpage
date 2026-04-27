@@ -1,0 +1,1 @@
+import{f as n}from"./useForwardExpose-ZVkrybgW.js";import{D as m,s as r}from"./index-B8y1bvW4.js";function o(){const e=r(),t=m(()=>["#text","#comment"].includes(e.value?.$el.nodeName)?e.value?.$el.nextElementSibling:n(e));return{primitiveElement:e,currentElement:t}}export{o as u};
