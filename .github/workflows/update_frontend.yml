@@ -15,12 +15,31 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-      - name: Get latest mc_fd release
+      - name: Get latest mc_fd release with landing asset
         id: latest_frontend_version
-        uses: abatilo/release-info-action@v1.3.3
-        with:
-          owner: muthur-command
-          repo: mc_fd
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          latest_tag="$(
+            gh api repos/muthur-command/mc_fd/releases --paginate --jq '
+              map(select(.draft == false and .prerelease == false))
+              | map(
+                  select(
+                    any(
+                      .assets[]?;
+                      .name | test("^muthur_command_frontend_landingpage-.*\\.tar\\.gz$")
+                    )
+                  )
+                )
+              | .[0].tag_name // empty
+            '
+          )"
+          if [[ -z "${latest_tag}" ]]; then
+            echo "No stable mc_fd release contains landingpage asset package."
+            exit 1
+          fi
+          echo "latest_tag=${latest_tag}" >> "$GITHUB_OUTPUT"
       - name: Check if version is up to date
         id: check_version
         run: |
@@ -55,7 +74,7 @@ jobs:
           rm -rf rootfs/usr/share/www/*
       - name: Update version file
         run: |
-          echo "${{ needs.check-version.outputs.latest_version }}" > .muthur-command-frontend-version
+          echo "${{ needs.check-version.outputs.latest_version }}" > .mc-frontend-version
       - name: Download release assets
         uses: robinraju/release-downloader@v1
         with:
