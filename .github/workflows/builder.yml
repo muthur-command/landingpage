@@ -74,7 +74,7 @@ jobs:
           persist-credentials: false
 
       - name: Build landingpage
-        uses: muthur-command/builder/actions/build-image@2026.04.2
+        uses: muthur-command/builder/actions/build-image@2026.05.0
         with:
           arch: ${{ matrix.arch }}
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
