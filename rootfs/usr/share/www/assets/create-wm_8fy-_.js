@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as t,o,c as r,h as a}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=t({__name:"create",setup(c){return(n,s)=>(o(),r(a(e),{title:"Add Product",description:"添加产品"}))}});export{m as default};

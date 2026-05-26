@@ -1,1 +1,0 @@
-import{_ as a}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as e,o as n,c as o,h as t}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=e({__name:"kanban",setup(r){return(s,c)=>(n(),o(t(a),{title:"Kanban",description:"看板"}))}});export{m as default};

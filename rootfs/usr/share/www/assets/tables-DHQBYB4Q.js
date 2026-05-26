@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as t,o,c as a,h as r}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=t({__name:"tables",setup(s){return(n,c)=>(o(),a(r(e),{title:"POS Tables",description:"POS 桌位"}))}});export{m as default};

@@ -1,1 +1,0 @@
-import{d as o,H as t,o as s,l as r,g as n,av as a}from"./index-B8y1bvW4.js";import{b as e}from"./route-block-B_A1xBdJ.js";const c={class:"flex items-center justify-center w-screen h-screen"},i=o({__name:"index",setup(u){return t().push({name:"/dashboard/"}),(f,m)=>(s(),r("div",c,[n(a)]))}});typeof e=="function"&&e(i);export{i as default};

@@ -1,1 +1,0 @@
-import{_ as t}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as e,o,c as r,h as a}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const i=e({__name:"02",setup(s){return(n,c)=>(o(),r(a(t),{title:"Empty States 02",description:"空状态 02"}))}});export{i as default};

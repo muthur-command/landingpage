@@ -1,1 +1,0 @@
-import{d as s,H as o,z as n,o as r,l as a,k as i}from"./index-B8y1bvW4.js";const c={class:"flex min-h-[50vh] items-center justify-center text-muted-foreground"},p=s({__name:"system",setup(m){const e=o();return n(()=>{e.replace("/plugin/system-monitor")}),(t,u)=>(r(),a("div",c,i(t.$t("pluginSystem.loading")),1))}});export{p as default};

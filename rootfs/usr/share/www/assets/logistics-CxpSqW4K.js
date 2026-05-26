@@ -1,1 +1,0 @@
-import{_ as o}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as t,o as e,c as s,h as r}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=t({__name:"logistics",setup(c){return(i,a)=>(e(),s(r(o),{title:"Logistics",description:"物流"}))}});export{m as default};

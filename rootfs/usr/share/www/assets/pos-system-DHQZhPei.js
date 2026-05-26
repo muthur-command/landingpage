@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as o,o as t,c as s,h as r}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const i=o({__name:"pos-system",setup(p){return(a,n)=>(t(),s(r(e),{title:"POS App",description:"收银系统"}))}});export{i as default};

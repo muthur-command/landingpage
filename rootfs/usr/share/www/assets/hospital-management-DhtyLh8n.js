@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as t,o as a,c as o,h as n}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const _=t({__name:"hospital-management",setup(r){return(s,m)=>(a(),o(n(e),{title:"Hospital Management",description:"医院管理"}))}});export{_ as default};
