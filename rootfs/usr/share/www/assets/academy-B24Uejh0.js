@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as a,o,c as t,h as r}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const i=a({__name:"academy",setup(c){return(n,s)=>(o(),t(r(e),{title:"Academy",description:"学院/学校"}))}});export{i as default};

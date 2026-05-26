@@ -1,1 +1,0 @@
-import{i as t}from"./ConfigProvider-CYY1tWkI.js";import{s as r,D as a}from"./index-B8y1bvW4.js";function m(e,n=Number.NEGATIVE_INFINITY,o=Number.POSITIVE_INFINITY){return Math.min(o,Math.max(n,e))}function i(e){const n=t({nonce:r()});return a(()=>e?.value||n.nonce?.value)}export{m as c,i as u};

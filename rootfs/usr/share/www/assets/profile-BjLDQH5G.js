@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as o,o as r,c as t,h as a}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const f=o({__name:"profile",setup(n){return(s,c)=>(r(),t(a(e),{title:"Profile",description:"个人资料"}))}});export{f as default};

@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as r,o as a,c as o,h as t}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const p=r({__name:"ai-image-generator",setup(n){return(s,c)=>(a(),o(t(e),{title:"AI Image Generator",description:"AI 图像生成"}))}});export{p as default};

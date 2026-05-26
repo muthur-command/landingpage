@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as t,o,c as r,h as n}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=t({__name:"index",setup(s){return(a,c)=>(o(),r(n(e),{title:"Product List",description:"产品列表"}))}});export{m as default};

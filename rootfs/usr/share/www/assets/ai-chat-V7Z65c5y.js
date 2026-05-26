@@ -1,1 +1,0 @@
-import{_ as t}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as a,o as e,c as o,h as r}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=a({__name:"ai-chat",setup(c){return(n,s)=>(e(),o(r(t),{title:"AI Chat",description:"AI 对话（侧栏入口，完整版在 /ai-talk）"}))}});export{m as default};

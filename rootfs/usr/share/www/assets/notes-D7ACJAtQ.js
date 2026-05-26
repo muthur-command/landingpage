@@ -1,1 +1,0 @@
-import{_ as e}from"./placeholder-page.vue_vue_type_script_setup_true_lang-BpC7l-XW.js";import{d as o,o as t,c as r,h as s}from"./index-B8y1bvW4.js";import"./basic-header.vue_vue_type_script_setup_true_lang-gkKodQMB.js";const m=o({__name:"notes",setup(n){return(a,c)=>(t(),r(s(e),{title:"Notes",description:"笔记"}))}});export{m as default};

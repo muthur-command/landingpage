@@ -1,1 +1,0 @@
-import{_ as e}from"./coming-soon-content.vue_vue_type_script_setup_true_lang-BrmRN-Dv.js";import{d as o,o as r,c as a}from"./index-B8y1bvW4.js";import"./sparkles-CFGhVgE3.js";const m=o({__name:"upgrade",setup(t){return(_,c)=>(r(),a(e))}});export{m as default};
