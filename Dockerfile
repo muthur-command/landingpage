@@ -26,4 +26,4 @@ COPY rootfs /
 ENTRYPOINT ["/usr/bin/landingpage"]
 
 LABEL \
-    io.mcio.type="landingpage"
+    io.mcos.type="landingpage"
