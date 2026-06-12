@@ -16,19 +16,30 @@ env:
   BUILD_NAME: landingpage
   BUILD_TYPE: landingpage
 
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   init:
     name: Initialize build
+    if: github.repository_owner == 'muthur-command'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       version: ${{ steps.version.outputs.version }}
       channel: ${{ steps.version.outputs.channel }}
       publish: ${{ steps.version.outputs.publish }}
+      extra_tags: ${{ steps.tags.outputs.extra_tags }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Get version
         id: version
@@ -36,8 +47,29 @@ jobs:
         with:
           type: ${{ env.BUILD_TYPE }}
 
+      - name: Verify version
+        if: github.event_name == 'release'
+        uses: muthur-command/actions/helpers/verify-version@mc
+        with:
+          ignore-dev: true
+
+      - name: Compute extra tags
+        id: tags
+        shell: bash
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if [[ "${VERSION}" =~ d ]]; then
+            echo "extra_tags=dev" >> "$GITHUB_OUTPUT"
+          elif [[ "${VERSION}" =~ b ]]; then
+            echo "extra_tags=beta" >> "$GITHUB_OUTPUT"
+          else
+            echo "extra_tags=stable" >> "$GITHUB_OUTPUT"
+          fi
+
   build:
     name: Build ${{ matrix.machine }} landingpage
+    if: github.repository_owner == 'muthur-command'
     needs: init
     runs-on: ${{ matrix.runs-on }}
     permissions:
@@ -84,8 +116,50 @@ jobs:
         with:
           arch: ${{ matrix.arch }}
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
-          image: ghcr.io/muthur-command/${{ matrix.machine }}-muthurcommand
+          cosign-identity: "https://github.com/muthur-command/landingpage/.*"
+          image: ghcr.io/muthur-command/${{ matrix.machine }}-landingpage
           image-tags: |
-            landingpage
+            ${{ needs.init.outputs.version }}
+            ${{ needs.init.outputs.extra_tags }}
           push: ${{ needs.init.outputs.publish == 'true' }}
           version: ${{ needs.init.outputs.version }}
+
+  publish_version:
+    name: Publish version files
+    environment: ${{ needs.init.outputs.channel || 'dev' }}
+    if: |
+      github.repository_owner == 'muthur-command'
+      && needs.init.outputs.publish == 'true'
+    needs: [init, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Initialize git
+        uses: muthur-command/actions/helpers/git-init@mc
+        with:
+          name: ${{ secrets.GIT_NAME }}
+          email: ${{ secrets.GIT_EMAIL }}
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - name: Update version file
+        uses: muthur-command/actions/helpers/version-push@mc
+        with:
+          key: ${{ env.BUILD_NAME }}
+          key-description: "Muthur Command landingpage"
+          version: ${{ needs.init.outputs.version }}
+          channel: ${{ needs.init.outputs.channel || 'dev' }}
+
+      - name: Update version file (stable -> beta)
+        if: needs.init.outputs.channel == 'stable'
+        uses: muthur-command/actions/helpers/version-push@mc
+        with:
+          key: ${{ env.BUILD_NAME }}
+          key-description: "Muthur Command landingpage"
+          version: ${{ needs.init.outputs.version }}
+          channel: beta
