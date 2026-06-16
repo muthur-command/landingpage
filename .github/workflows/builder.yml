@@ -93,6 +93,8 @@ jobs:
           - raspberrypi3-64
           - raspberrypi4-64
           - raspberrypi5-64
+          - yellow
+          - green
           - neardi-pi-3
         include:
           # Default: aarch64 on native ARM runner (must come before amd64 overrides)
