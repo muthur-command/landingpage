@@ -18,7 +18,7 @@ jobs:
       latest_version: ${{ steps.latest_frontend_version.outputs.latest_tag }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Get latest mc_fd release with landing asset
         id: latest_frontend_version
         env:
@@ -78,7 +78,7 @@ jobs:
     if: needs.check-version.outputs.skip != 'true'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Clear www folder
         run: |
           rm -rf rootfs/usr/share/www/*
