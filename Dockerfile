@@ -14,7 +14,7 @@ RUN \
         amd64|arm64) ;; \
         *) echo "Unsupported TARGETARCH: ${TARGETARCH}" && exit 1 ;; \
     esac \
-    && CGO_ENABLED=0 GOARCH=${TARGETARCH} go build -ldflags="-s -w"
+    && CGO_ENABLED=0 GOARCH=${TARGETARCH} go build -buildvcs=false -ldflags="-s -w" -o landingpage .
 
 
 FROM scratch
