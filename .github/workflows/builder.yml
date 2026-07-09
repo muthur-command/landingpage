@@ -95,7 +95,7 @@ jobs:
           - raspberrypi5-64
           - yellow
           - green
-          - neardi-pi-3
+          - mc-neardi-lb200
         include:
           # Default: aarch64 on native ARM runner (must come before amd64 overrides)
           - arch: aarch64
